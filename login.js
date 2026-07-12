@@ -1,5 +1,5 @@
 function handleCredentialResponse(response){
 
-    console.log(response);
+    console.log(response.credential);
 
 }
