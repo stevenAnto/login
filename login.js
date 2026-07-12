@@ -1,5 +1,8 @@
 function handleCredentialResponse(response){
+        const user = jwt_decode(response.credential);
 
-    console.log(response.credential);
+    alert("Bienvenido " + user.name);
+
+    console.log(user);
 
 }
