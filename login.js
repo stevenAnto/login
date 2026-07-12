@@ -1,7 +1,18 @@
+const token = localStorage.getItem("token");
+
+if (token) {
+    window.location.href = "dashboard.html";
+}
+
+
 function handleCredentialResponse(response) {
 
-    console.log("Google respondió");
+    // Guardar el ID Token
+    localStorage.setItem("token", response.credential);
 
-    console.log(response);
+    console.log("Token guardado.");
+
+    // Ir al dashboard
+    window.location.href = "dashboard.html";
 
 }
