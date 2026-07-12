@@ -1,8 +1,7 @@
-function handleCredentialResponse(response){
-        const user = jwt_decode(response.credential);
+function handleCredentialResponse(response) {
 
-    alert("Bienvenido " + user.name);
+    console.log("Google respondió");
 
-    console.log(user);
+    console.log(response);
 
 }
