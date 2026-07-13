@@ -5,7 +5,11 @@ const token = localStorage.getItem("token");
 if (token) {
     window.location.href = "dashboard.html";
 }
-
+function parseJwt(token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    return JSON.parse(atob(base64));
+}
 
 function handleCredentialResponse(response) {
 
