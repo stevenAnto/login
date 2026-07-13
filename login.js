@@ -7,12 +7,52 @@ if (token) {
 
 function handleCredentialResponse(response) {
 
-    // Guardar el ID Token
-    localStorage.setItem("token", response.credential);
+    const googleToken = response.credential;
 
-    console.log("Token guardado.");
 
-    // Ir al dashboard
-    window.location.href = "dashboard.html";
+    loginBackend(googleToken)
+        .then(data => {
 
+            if(data.success){
+
+                console.log("Usuario:", data.user);
+
+
+                localStorage.setItem(
+                    "user",
+                    JSON.stringify(data.user)
+                );
+
+
+                window.location.href="dashboard.html";
+
+            }
+
+        });
+
+}
+
+async function loginBackend(token) {
+
+    const response = await fetch(
+        "http://127.0.0.1:8000/auth/google",
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                token: token
+            })
+        }
+    );
+
+
+    const data = await response.json();
+
+    console.log(data);
+
+    return data;
 }
