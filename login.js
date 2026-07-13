@@ -11,13 +11,10 @@ function handleCredentialResponse(response) {
 
     const googleToken = response.credential;
 
-    // Guarda el token de Google
-    localStorage.setItem("token", googleToken);
+    const user = parseJwt(googleToken);
 
-    // (Opcional) Guarda información mínima
-    localStorage.setItem("user", JSON.stringify({
-        logged: true
-    }));
+    localStorage.setItem("token", googleToken);
+    localStorage.setItem("user", JSON.stringify(user));
 
     window.location.href = "dashboard.html";
 }
