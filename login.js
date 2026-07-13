@@ -1,3 +1,4 @@
+const API = "http://66.154.117.158:8000";
 const token = localStorage.getItem("token");
 
 if (token) {
@@ -9,23 +10,21 @@ function handleCredentialResponse(response) {
 
     const googleToken = response.credential;
 
-
     loginBackend(googleToken)
         .then(data => {
 
-            if(data.success){
+            if (data.success) {
 
-                console.log("Usuario:", data.user);
+                // Guarda el token de Google
+                localStorage.setItem("token", googleToken);
 
-
+                // Guarda el usuario
                 localStorage.setItem(
                     "user",
                     JSON.stringify(data.user)
                 );
 
-
-                window.location.href="dashboard.html";
-
+                window.location.href = "dashboard.html";
             }
 
         });
@@ -34,25 +33,15 @@ function handleCredentialResponse(response) {
 
 async function loginBackend(token) {
 
-    const response = await fetch(
-        "http://127.0.0.1:8000/auth/google",
-        {
-            method: "POST",
+    const response = await fetch(`${API}/auth/google`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            token: token
+        })
+    });
 
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-                token: token
-            })
-        }
-    );
-
-
-    const data = await response.json();
-
-    console.log(data);
-
-    return data;
+    return await response.json();
 }
