@@ -1,18 +1,15 @@
+function parseJwt(token) {
+    return JSON.parse(atob(token.split(".")[1]));
+}
+
 const token = localStorage.getItem("token");
 
 if (!token) {
-
     window.location.href = "index.html";
-
 }
 
-// Botón cerrar sesión
-const btnLogout = document.getElementById("logout");
+const user = parseJwt(token);
 
-btnLogout.addEventListener("click", function () {
-
-    localStorage.removeItem("token");
-
-    window.location.href = "index.html";
-
-});
+document.getElementById("nombre").textContent = user.name;
+document.getElementById("correo").textContent = user.email;
+document.getElementById("foto").src = user.picture;
