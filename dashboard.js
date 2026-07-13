@@ -8,6 +8,12 @@ if (!token) {
     window.location.href = "index.html";
 }
 
+//funcion cerrar boton
+const btnLogout = document.getElementById("logout");
+btnLogout.addEventListener("click",function(){
+    localStorage.removeItem("token");
+    window.location.href = "index.html";
+} )
 const user = parseJwt(token);
 
 document.getElementById("nombre").textContent = user.name;
