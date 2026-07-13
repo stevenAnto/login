@@ -10,25 +10,15 @@ function handleCredentialResponse(response) {
 
     const googleToken = response.credential;
 
-    loginBackend(googleToken)
-        .then(data => {
+    // Guarda el token de Google
+    localStorage.setItem("token", googleToken);
 
-            if (data.success) {
+    // (Opcional) Guarda información mínima
+    localStorage.setItem("user", JSON.stringify({
+        logged: true
+    }));
 
-                // Guarda el token de Google
-                localStorage.setItem("token", googleToken);
-
-                // Guarda el usuario
-                localStorage.setItem(
-                    "user",
-                    JSON.stringify(data.user)
-                );
-
-                window.location.href = "dashboard.html";
-            }
-
-        });
-
+    window.location.href = "dashboard.html";
 }
 
 async function loginBackend(token) {
