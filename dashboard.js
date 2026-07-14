@@ -17,3 +17,35 @@ document.getElementById("logout").addEventListener("click", () => {
     window.location.href = "index.html";
 
 });
+
+async function cargarResumen() {
+
+    try {
+
+        const response = await fetch(`${API}/records/summary`, {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                token: token
+            })
+
+        });
+
+        const data = await response.json();
+
+        console.log("Respuesta backend:", data);
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+cargarResumen()
