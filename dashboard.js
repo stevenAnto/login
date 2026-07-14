@@ -1,3 +1,4 @@
+const API = "https://backesclavos-production.up.railway.app";
 const token = localStorage.getItem("token");
 const user = JSON.parse(localStorage.getItem("user"));
 
