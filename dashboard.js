@@ -39,7 +39,14 @@ async function cargarResumen() {
 
         const data = await response.json();
 
-        console.log("Respuesta backend:", data);
+        const tbody = document.getElementById("tablaResumen");
+
+        tbody.innerHTML = `
+            <tr>
+                <td>${data.summary.total}</td>
+                <td>${data.summary.cantidad_registros}</td>
+            </tr>
+        `;
 
     } catch (error) {
 
@@ -49,4 +56,45 @@ async function cargarResumen() {
 
 }
 
-cargarResumen()
+async function cargarUsuarios() {
+
+    try {
+
+        const response = await fetch(`${API}/records/all-summary`);
+
+        const usuarios = await response.json();
+
+        const tbody = document.getElementById("tablaUsuarios");
+
+        tbody.innerHTML = "";
+
+        usuarios.forEach(usuario => {
+
+            tbody.innerHTML += `
+
+                <tr>
+
+                    <td>${usuario.name}</td>
+
+                    <td>${usuario.email}</td>
+
+                    <td>${usuario.total}</td>
+
+                    <td>${usuario.cantidad_registros}</td>
+
+                </tr>
+
+            `;
+
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+cargarResumen();
+cargarUsuarios();

@@ -1,42 +1,40 @@
-<!DOCTYPE html>
-<html lang="es">
+<h2>Mi resumen</h2>
 
-<head>
+<table border="1">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <thead>
+        <tr>
+            <th>Total</th>
+            <th>Cantidad de registros</th>
+        </tr>
+    </thead>
 
-    <title>Dashboard</title>
+    <tbody id="tablaResumen">
 
-    <link rel="stylesheet" href="style.css">
+    </tbody>
 
-</head>
+</table>
 
-<body>
 
-    <div class="container">
+<h2>Usuarios</h2>
 
-        <h1>Dashboard</h1>
+<table border="1">
 
-        <p>Has iniciado sesión correctamente.</p>
+    <thead>
 
-        <div class="container">
+        <tr>
 
-            <img id="foto" width="120">
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Total</th>
+            <th>Registros</th>
 
-            <h2 id="nombre"></h2>
+        </tr>
 
-            <p id="correo"></p>
+    </thead>
 
-            <button id="logout">
-                Cerrar sesión
-            </button>
+    <tbody id="tablaUsuarios">
 
-        </div>
-    </div>
+    </tbody>
 
-    <script src="dashboard.js"></script>
-
-</body>
-
-</html>
+</table>
