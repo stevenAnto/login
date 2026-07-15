@@ -15,7 +15,8 @@ body{
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #000;
+    background-color: #ffffff; /* Color de respaldo para navegadores antiguos */
+    background: linear-gradient(to bottom, #ffffff 0%, #a6d8f7 100%);
 }
 
 .container{
