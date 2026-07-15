@@ -28,8 +28,11 @@ body{
     background: rgba(255,255,255,.15);
     backdrop-filter: blur(5px);
     border-radius:20px;
-    background-image: url("arg.jpg");
 
+    background-image: url("arg.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;   /* o cover */
 }
 
 h1{
