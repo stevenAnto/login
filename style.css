@@ -10,6 +10,17 @@ body{
     background:#eef2f7;
     color:#222;
 
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background-image:url("arg.jpg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #a6d8f7;
+
 }
 
 .container{
