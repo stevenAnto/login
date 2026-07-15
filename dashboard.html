@@ -14,15 +14,15 @@
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <h1>Dashboard</h1>
+    <h1>Esclavos</h1>
 
-        <p>Has iniciado sesión correctamente.</p>
+    <div class="top">
 
-        <div class="container">
+        <div class="card">
 
-            <img id="foto" width="120">
+            <img id="foto">
 
             <h2 id="nombre"></h2>
 
@@ -34,27 +34,60 @@
 
         </div>
 
-        <h2>Mi resumen</h2>
+        <div class="card">
 
-        <table border="1">
+            <h2>Mi resumen</h2>
 
-            <thead>
-                <tr>
-                    <th>Total Registros</th>
-                    <th>Veces cargados</th>
-                </tr>
-            </thead>
+            <table>
 
-            <tbody id="tablaResumen">
+                <thead>
 
-            </tbody>
+                    <tr>
 
-        </table>
+                        <th>Total</th>
 
+                        <th>Registros</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tablaResumen">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Nuevo registro</h2>
+
+        <div class="form">
+
+            <input
+                type="number"
+                id="valor"
+                placeholder="Ingrese un valor">
+
+            <button id="guardar">
+                Guardar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
 
         <h2>Usuarios</h2>
 
-        <table border="1">
+        <table>
 
             <thead>
 
@@ -62,8 +95,8 @@
 
                     <th>Nombre</th>
                     <th>Correo</th>
-                    <th>Total Registros</th>
-                    <th>Veces Cargados</th>
+                    <th>Total</th>
+                    <th>Registros</th>
 
                 </tr>
 
@@ -74,18 +107,10 @@
             </tbody>
 
         </table>
-<h2>Nuevo registro</h2>
-
-<input
-    type="number"
-    id="valor"
-    placeholder="Ingrese un valor">
-
-<button id="guardar">
-    Guardar
-</button>        
 
     </div>
+
+</div>
 
     
 
