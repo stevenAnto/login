@@ -40,8 +40,8 @@
 
             <thead>
                 <tr>
-                    <th>Total</th>
-                    <th>Cantidad de registros</th>
+                    <th>Total Registros</th>
+                    <th>Veces cargados</th>
                 </tr>
             </thead>
 
@@ -62,8 +62,8 @@
 
                     <th>Nombre</th>
                     <th>Correo</th>
-                    <th>Total</th>
-                    <th>Registros</th>
+                    <th>Total Registros</th>
+                    <th>Veces Cargados</th>
 
                 </tr>
 
@@ -74,25 +74,20 @@
             </tbody>
 
         </table>
-        <h2>Resumen</h2>
+<h2>Nuevo registro</h2>
 
-        <table border="1">
+<input
+    type="number"
+    id="valor"
+    placeholder="Ingrese un valor">
 
-            <thead>
+<button id="guardar">
+    Guardar
+</button>        
 
-                <tr>
-                    <th>Categoría</th>
-                    <th>Total</th>
-                </tr>
-
-            </thead>
-
-            <tbody id="tablaResumen">
-
-            </tbody>
-
-        </table>
     </div>
+
+    
 
     <script src="dashboard.js"></script>
 

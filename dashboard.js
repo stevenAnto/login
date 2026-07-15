@@ -96,5 +96,59 @@ async function cargarUsuarios() {
 
 }
 
+async function crearRegistro() {
+
+    const value = Number(
+        document.getElementById("valor").value
+    );
+
+    if (isNaN(value)) {
+
+        alert("Ingrese un valor válido");
+
+        return;
+    }
+
+    try {
+
+        const response = await fetch(`${API}/records`, {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+
+                token: token,
+                value: value
+
+            })
+
+        });
+
+        const data = await response.json();
+
+        console.log(data);
+
+        document.getElementById("valor").value = "";
+
+        // Actualizar tablas
+        cargarResumen();
+        cargarUsuarios();
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Error al guardar el registro.");
+
+    }
+
+}
+
 cargarResumen();
 cargarUsuarios();
+
+document.getElementById("guardar").addEventListener("click", crearRegistro);
