@@ -65,25 +65,25 @@ async function cargarUsuarios() {
 
         tbody.innerHTML = "";
 
-        usuarios.forEach(usuario => {
+        const esMovil = window.matchMedia("(max-width: 768px)").matches;
 
-            tbody.innerHTML += `
 
-                <tr>
+usuarios.forEach(usuario => {
 
-                    <td>${usuario.name}</td>
+    const nombreMostrar = esMovil
+        ? usuario.name.split(" ")[0]
+        : usuario.name;
 
-                    <td>${usuario.email}</td>
+    tbody.innerHTML += `
+        <tr>
+            <td>${nombreMostrar}</td>
+            <td>${usuario.email}</td>
+            <td>${usuario.total}</td>
+            <td>${usuario.cantidad_registros}</td>
+        </tr>
+    `;
 
-                    <td>${usuario.total}</td>
-
-                    <td>${usuario.cantidad_registros}</td>
-
-                </tr>
-
-            `;
-
-        });
+});
 
     } catch (error) {
 
