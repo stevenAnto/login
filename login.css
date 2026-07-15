@@ -1,35 +1,76 @@
-<!DOCTYPE html>
-<html lang="es">
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
-<head>
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#2563eb,#1e40af);
+}
 
-    <meta charset="UTF-8">
+.container{
+    width:420px;
+    max-width:90%;
+    background:white;
+    padding:50px 40px;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,.2);
+    text-align:center;
+}
 
-    <title>Login</title>
+h1{
+    font-size:2rem;
+    color:#1f2937;
+    margin-bottom:15px;
+}
 
-    <link rel="stylesheet" href="style.css">
+p{
+    color:#6b7280;
+    margin-bottom:40px;
+}
 
-</head>
+.g_id_signin{
+    display:flex;
+    justify-content:center;
+}
 
-<body>
+/* ---------- Celular ---------- */
 
-    <div class="container">
+@media (max-width:768px){
 
-        <h1>Mi Aplicación</h1>
+    body{
+        padding:20px;
+    }
 
-        <div id="g_id_onload" data-client_id="767759154318-524e6a7ovtfbtam95vsb9qj00g2b5mv7.apps.googleusercontent.com"
-            data-callback="handleCredentialResponse">
-        </div>
+    .container{
+        width:100%;
+        min-height:100vh;
+        border-radius:0;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        padding:40px 30px;
+    }
 
-        <div class="g_id_signin" data-type="standard" data-size="large">
-        </div>
+    h1{
+        font-size:2.4rem;
+        margin-bottom:20px;
+    }
 
-    </div>
+    p{
+        font-size:1.1rem;
+        margin-bottom:50px;
+    }
 
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    .g_id_signin{
+        transform:scale(1.25);
+        transform-origin:center;
+    }
 
-    <script src="login.js"></script>
-
-</body>
-
-</html>
+}
