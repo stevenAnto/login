@@ -1,40 +1,101 @@
-<h2>Mi resumen</h2>
+<!DOCTYPE html>
+<html lang="es">
 
-<table border="1">
+<head>
 
-    <thead>
-        <tr>
-            <th>Total</th>
-            <th>Cantidad de registros</th>
-        </tr>
-    </thead>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <tbody id="tablaResumen">
+    <title>Dashboard</title>
 
-    </tbody>
+    <link rel="stylesheet" href="style.css">
 
-</table>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Dashboard</h1>
+
+        <p>Has iniciado sesión correctamente.</p>
+
+        <div class="container">
+
+            <img id="foto" width="120">
+
+            <h2 id="nombre"></h2>
+
+            <p id="correo"></p>
+
+            <button id="logout">
+                Cerrar sesión
+            </button>
+
+        </div>
+
+        <h2>Mi resumen</h2>
+
+        <table border="1">
+
+            <thead>
+                <tr>
+                    <th>Total</th>
+                    <th>Cantidad de registros</th>
+                </tr>
+            </thead>
+
+            <tbody id="tablaResumen">
+
+            </tbody>
+
+        </table>
 
 
-<h2>Usuarios</h2>
+        <h2>Usuarios</h2>
 
-<table border="1">
+        <table border="1">
 
-    <thead>
+            <thead>
 
-        <tr>
+                <tr>
 
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th>Total</th>
-            <th>Registros</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Total</th>
+                    <th>Registros</th>
 
-        </tr>
+                </tr>
 
-    </thead>
+            </thead>
 
-    <tbody id="tablaUsuarios">
+            <tbody id="tablaUsuarios">
 
-    </tbody>
+            </tbody>
 
-</table>
+        </table>
+        <h2>Resumen</h2>
+
+        <table border="1">
+
+            <thead>
+
+                <tr>
+                    <th>Categoría</th>
+                    <th>Total</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaResumen">
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <script src="dashboard.js"></script>
+
+</body>
+
+</html>
