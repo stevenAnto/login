@@ -569,3 +569,27 @@ table{
 }
 
 }
+
+@media (max-width:768px){
+
+    table{
+        table-layout:fixed;
+    }
+
+    table th,
+    table td{
+        font-size:11px;
+        padding:8px 4px;
+    }
+
+    td{
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+
+    td:nth-child(2){
+        font-size:10px;
+    }
+
+}
