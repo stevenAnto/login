@@ -39,14 +39,11 @@ async function cargarResumen() {
 
         const data = await response.json();
 
-        const tbody = document.getElementById("tablaResumen");
+document.getElementById("totalResumen").textContent =
+    data.summary.total;
 
-        tbody.innerHTML = `
-            <tr>
-                <td>${data.summary.total}</td>
-                <td>${data.summary.cantidad_registros}</td>
-            </tr>
-        `;
+document.getElementById("registrosResumen").textContent =
+    data.summary.cantidad_registros;
 
     } catch (error) {
 
