@@ -32,7 +32,8 @@ body{
     background-image: url("arg.jpg");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;   /* o cover */
+    background-size: cover;   /* o cover */
+    background-color: #a6d8f7;
 }
 
 h1{
