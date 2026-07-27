@@ -371,6 +371,7 @@ function dibujarGrafico(labels, valores) {
         },
 
         options: {
+            animation:false,
 
             responsive: true,
 

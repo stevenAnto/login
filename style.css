@@ -619,3 +619,6 @@ table{
     margin-top: 20px;
 
 }
+#graficoHistorial{
+    height:250px !important;
+}
