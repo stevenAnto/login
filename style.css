@@ -50,13 +50,11 @@ GRID SUPERIOR
 =======================*/
 
 .top{
-
     display:grid;
     grid-template-columns:280px 1fr 380px;
     gap:25px;
     margin-bottom:25px;
     align-items:start;
-
 }
 
 /*======================
@@ -608,17 +606,21 @@ table{
     }
 
 }
-.grafico-container{
-
-    position: relative;
-
-    height: 220px;
-
-    width: 100%;
-
-    margin-top: 20px;
-
+.grafico-card{
+    width:100%;
+    margin-bottom:25px;
 }
+
+
+.grafico-container{
+    position:relative;
+    width:100%;
+    height:350px;
+    margin-top:20px;
+}
+
+
 #graficoHistorial{
-    height:250px !important;
+    width:100% !important;
+    height:100% !important;
 }
