@@ -109,6 +109,7 @@ async function cargarUsuarios() {
         tbody.innerHTML = "";
 
         const esMovil = window.matchMedia("(max-width: 768px)").matches;
+        usuarios.sort((a, b) => b.total - a.total);//ordenado
 
 
         usuarios.forEach(usuario => {
@@ -267,7 +268,7 @@ async function cargarRegistros() {
 
             tbody.innerHTML += `
                 <tr>
-                    <td>${registro.created_at}</td>
+                    <td>${formatearFecha(registro.created_at)}</td>
                     <td>${registro.value}</td>
                 </tr>
             `;
@@ -279,6 +280,21 @@ async function cargarRegistros() {
         console.error(error);
 
     }
+
+}
+function formatearFecha(fechaUTC) {
+
+    const fecha = new Date(fechaUTC + "Z");
+
+    return fecha.toLocaleString("es-PE", {
+        timeZone: "America/Lima",
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+    });
 
 }
 
