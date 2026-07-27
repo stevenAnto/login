@@ -1,4 +1,5 @@
-const API = "https://backesclavos-production.up.railway.app";
+//const API = "https://backesclavos-production.up.railway.app";
+const API = "https://registros.esclavos.cc";
 const token = localStorage.getItem("token");
 const user = JSON.parse(localStorage.getItem("user"));
 
@@ -57,7 +58,15 @@ async function cargarUsuarios() {
 
     try {
 
-        const response = await fetch(`${API}/records/all-summary`);
+        const response = await fetch(`${API}/records/all-summary`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                token: token
+            })
+        });
 
         const usuarios = await response.json();
 
@@ -68,13 +77,13 @@ async function cargarUsuarios() {
         const esMovil = window.matchMedia("(max-width: 768px)").matches;
 
 
-usuarios.forEach(usuario => {
+        usuarios.forEach(usuario => {
 
-    const nombreMostrar = esMovil
-        ? usuario.name.split(" ")[0]
-        : usuario.name;
+            const nombreMostrar = esMovil
+                ? usuario.name.split(" ")[0]
+                : usuario.name;
 
-    tbody.innerHTML += `
+            tbody.innerHTML += `
         <tr>
             <td>${nombreMostrar}</td>
             <td>${usuario.email}</td>
@@ -83,7 +92,7 @@ usuarios.forEach(usuario => {
         </tr>
     `;
 
-});
+        });
 
     } catch (error) {
 

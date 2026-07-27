@@ -1,4 +1,5 @@
-const API = "https://backesclavos-production.up.railway.app";
+//const API = "https://backesclavos-production.up.railway.app";
+const API = "https://registros.esclavos.cc";
 let desployar =1
 const token = localStorage.getItem("token");
 
