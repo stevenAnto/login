@@ -336,7 +336,9 @@ function agruparRegistrosPorDia(registros) {
 }
 function dibujarGrafico(labels, valores) {
 
-    const ctx = document.getElementById("graficoHistorial");
+    const ctx = document
+    .getElementById("graficoHistorial")
+    .getContext("2d");
 
     if (grafico) {
         grafico.destroy();
