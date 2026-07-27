@@ -45,6 +45,7 @@ async function cargarResumen() {
         });
 
         const data = await response.json();
+        console.log("Recibod summary ",data);
 
         document.getElementById("totalResumen").textContent =
             data.summary.total;
@@ -79,6 +80,7 @@ async function cargarUsuarios() {
         });
 
         const usuarios = await response.json();
+        console.log("Usuarios:", usuarios);
 
         const tbody = document.getElementById("tablaUsuarios");
 
