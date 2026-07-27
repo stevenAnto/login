@@ -22,6 +22,28 @@ document.getElementById("logout").addEventListener("click", () => {
 
 });
 
+const tabUsuarios = document.getElementById("tabUsuarios");
+const tabRegistros = document.getElementById("tabRegistros");
+
+const panelUsuarios = document.getElementById("panelUsuarios");
+const panelRegistros = document.getElementById("panelRegistros");
+
+tabUsuarios.addEventListener("click", () => {
+
+    panelUsuarios.style.display = "block";
+    panelRegistros.style.display = "none";
+
+});
+
+tabRegistros.addEventListener("click", () => {
+
+    panelUsuarios.style.display = "none";
+    panelRegistros.style.display = "block";
+
+    cargarRegistros();
+
+});
+
 async function cargarResumen() {
     if (tokenExpirado(token)) {
         cerrarSesion();
@@ -210,6 +232,55 @@ console.log(
         timeZone: "America/Lima"
     })
 );
+async function cargarRegistros() {
+
+    if (tokenExpirado(token)) {
+        cerrarSesion();
+        return;
+    }
+
+    try {
+
+        const response = await fetch(`${API}/records/history`, {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                token: token
+            })
+
+        });
+
+        const data = await response.json();
+
+        console.log("Historial:", data);
+
+        const tbody = document.getElementById("tablaRegistros");
+
+        tbody.innerHTML = "";
+
+        data.records.forEach(registro => {
+
+            tbody.innerHTML += `
+                <tr>
+                    <td>${registro.created_at}</td>
+                    <td>${registro.value}</td>
+                </tr>
+            `;
+
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+}
 
 cargarResumen();
 cargarUsuarios();

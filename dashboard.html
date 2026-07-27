@@ -2,114 +2,104 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Dashboard</title>
-
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
-
-<div class="container">
-
-    <h1>Esclavos</h1>
-
-    <div class="top">
-
-        <!-- PERFIL -->
-        <div class="card perfil">
-
-            <img id="foto">
-
-            <h2 id="nombre"></h2>
-
-            <p id="correo"></p>
-
-            <button id="logout">
-                Cerrar sesión
-            </button>
-
-        </div>
-
-        <!-- RESUMEN -->
-        <div class="card">
-
-            <h2>Mi resumen</h2>
-
-            <div class="resumen">
-
-                <div class="resumen-card">
-                    <span>Total registros</span>
-                    <h3 id="totalResumen">0</h3>
+    <div class="container">
+        <h1>Esclavos</h1>
+        <div class="top"> <!-- PERFIL -->
+            <div class="card perfil"> <img id="foto">
+                <h2 id="nombre"></h2>
+                <p id="correo"></p> <button id="logout"> Cerrar sesión </button>
+            </div> <!-- RESUMEN -->
+            <div class="card">
+                <h2>Mi resumen</h2>
+                <div class="resumen">
+                    <div class="resumen-card"> <span>Total registros</span>
+                        <h3 id="totalResumen">0</h3>
+                    </div>
+                    <div class="resumen-card"> <span>Veces cargado</span>
+                        <h3 id="registrosResumen">0</h3>
+                    </div>
                 </div>
-
-                <div class="resumen-card">
-                    <span>Veces cargado</span>
-                    <h3 id="registrosResumen">0</h3>
-                </div>
-
+            </div> <!-- REGISTRO -->
+            <div class="card">
+                <h2>Nuevo registro</h2>
+                <div class="form"> <input type="number" id="valor" placeholder="Ingrese un valor"> <button id="guardar">
+                        Guardar </button> </div>
             </div>
+        </div> <!-- TABLA -->
+        <div class="card tabla-card">
 
-        </div>
+            <div class="tabs">
 
-        <!-- REGISTRO -->
-        <div class="card">
+                <button id="tabUsuarios" class="tab active">
+                    Usuarios
+                </button>
 
-            <h2>Nuevo registro</h2>
-
-            <div class="form">
-
-                <input
-                    type="number"
-                    id="valor"
-                    placeholder="Ingrese un valor">
-
-                <button id="guardar">
-                    Guardar
+                <button id="tabRegistros" class="tab">
+                    Mis registros
                 </button>
 
             </div>
 
+            <!-- TABLA USUARIOS -->
+            <div id="panelUsuarios">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Total registros</th>
+                            <th>Veces cargados</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tablaUsuarios">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- TABLA REGISTROS -->
+            <div id="panelRegistros" style="display:none;">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Fecha</th>
+                            <th>Valor</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tablaRegistros">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
         </div>
-
     </div>
-
-    <!-- TABLA -->
-
-    <div class="card tabla-card">
-
-        <h2>Usuarios</h2>
-
-        <table>
-
-            <thead>
-
-                <tr>
-
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Total registros</th>
-                    <th>Veces cargados</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody id="tablaUsuarios">
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-</div>
-
-<script src="dashboard.js"></script>
-
+    <script src="dashboard.js"></script>
 </body>
+
 </html>
