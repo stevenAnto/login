@@ -3,8 +3,10 @@ const API = "https://registros.esclavos.cc";
 const token = localStorage.getItem("token");
 const user = JSON.parse(localStorage.getItem("user"));
 
-if (!token || !user) {
-    window.location.href = "index.html";
+if (!token || !user || tokenExpirado(token)) {
+
+    cerrarSesion();
+
 }
 
 document.getElementById("nombre").textContent = user.name;
@@ -21,6 +23,10 @@ document.getElementById("logout").addEventListener("click", () => {
 });
 
 async function cargarResumen() {
+    if (tokenExpirado(token)) {
+        cerrarSesion();
+        return;
+    }
 
     try {
 
@@ -40,11 +46,11 @@ async function cargarResumen() {
 
         const data = await response.json();
 
-document.getElementById("totalResumen").textContent =
-    data.summary.total;
+        document.getElementById("totalResumen").textContent =
+            data.summary.total;
 
-document.getElementById("registrosResumen").textContent =
-    data.summary.cantidad_registros;
+        document.getElementById("registrosResumen").textContent =
+            data.summary.cantidad_registros;
 
     } catch (error) {
 
@@ -55,6 +61,10 @@ document.getElementById("registrosResumen").textContent =
 }
 
 async function cargarUsuarios() {
+    if (tokenExpirado(token)) {
+        cerrarSesion();
+        return;
+    }
 
     try {
 
@@ -103,6 +113,10 @@ async function cargarUsuarios() {
 }
 
 async function crearRegistro() {
+    if (tokenExpirado(token)) {
+        cerrarSesion();
+        return;
+    }
 
     const value = Number(
         document.getElementById("valor").value
@@ -153,6 +167,47 @@ async function crearRegistro() {
     }
 
 }
+function cerrarSesion() {
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    window.location.href = "index.html";
+
+}
+
+function tokenExpirado(token) {
+
+    try {
+
+        const payload = JSON.parse(atob(token.split(".")[1]));
+
+        // exp está en segundos desde 1970
+        const ahora = Math.floor(Date.now() / 1000);
+
+        return payload.exp <= ahora;
+
+    } catch (error) {
+
+        return true;
+
+    }
+
+}
+function obtenerExpiracionToken(token) {
+
+    const payload = JSON.parse(atob(token.split(".")[1]));
+
+    return new Date(payload.exp * 1000);
+
+}
+const fecha = obtenerExpiracionToken(token);
+
+console.log(
+    fecha.toLocaleString("es-PE", {
+        timeZone: "America/Lima"
+    })
+);
 
 cargarResumen();
 cargarUsuarios();
