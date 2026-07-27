@@ -276,7 +276,11 @@ async function cargarRegistros() {
             `;
 
         });
-        const resumen = agruparRegistrosPorDia(data.records);
+        const registrosOrdenados = [...data.records].sort(
+            (a, b) => new Date(a.created_at) - new Date(b.created_at)
+        );
+
+        const resumen = agruparRegistrosPorDia(registrosOrdenados);
 
         const labels = Object.keys(resumen);
 
@@ -337,8 +341,8 @@ function agruparRegistrosPorDia(registros) {
 function dibujarGrafico(labels, valores) {
 
     const ctx = document
-    .getElementById("graficoHistorial")
-    .getContext("2d");
+        .getElementById("graficoHistorial")
+        .getContext("2d");
 
     if (grafico) {
         grafico.destroy();
@@ -371,7 +375,7 @@ function dibujarGrafico(labels, valores) {
         },
 
         options: {
-            animation:false,
+            animation: false,
 
             responsive: true,
 
