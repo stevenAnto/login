@@ -1,4 +1,5 @@
 //const API = "https://backesclavos-production.up.railway.app";
+let grafico = null;
 const API = "https://registros.esclavos.cc";
 const token = localStorage.getItem("token");
 const user = JSON.parse(localStorage.getItem("user"));
@@ -182,6 +183,7 @@ async function crearRegistro() {
         // Actualizar tablas
         cargarResumen();
         cargarUsuarios();
+        cargarRegistros();
 
     } catch (error) {
 
@@ -274,6 +276,17 @@ async function cargarRegistros() {
             `;
 
         });
+        const resumen = agruparRegistrosPorDia(data.records);
+
+        const labels = Object.keys(resumen);
+
+        const valores = Object.values(resumen);
+
+        console.log(labels);
+
+        console.log(valores);
+
+        dibujarGrafico(labels, valores);
 
     } catch (error) {
 
@@ -298,7 +311,115 @@ function formatearFecha(fechaUTC) {
 
 }
 
+function agruparRegistrosPorDia(registros) {
+
+    const resumen = {};
+
+    registros.forEach(registro => {
+
+        const fecha = new Date(registro.created_at + "Z");
+
+        const dia = fecha.toLocaleDateString("es-PE", {
+            timeZone: "America/Lima"
+        });
+
+        if (!resumen[dia]) {
+            resumen[dia] = 0;
+        }
+
+        resumen[dia] += registro.value;
+
+    });
+
+    return resumen;
+
+}
+function dibujarGrafico(labels, valores) {
+
+    const ctx = document.getElementById("graficoHistorial");
+
+    if (grafico) {
+        grafico.destroy();
+    }
+
+    grafico = new Chart(ctx, {
+
+        type: "line",
+
+        data: {
+
+            labels: labels,
+
+            datasets: [
+                {
+
+                    label: "Total registrado por día",
+
+                    data: valores,
+
+                    borderWidth: 2,
+
+                    tension: 0.3,
+
+                    fill: false
+
+                }
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            plugins: {
+
+                legend: {
+                    display: true
+                }
+
+            },
+
+            scales: {
+
+                x: {
+
+                    title: {
+
+                        display: true,
+
+                        text: "Fecha"
+
+                    }
+
+                },
+
+                y: {
+
+                    title: {
+
+                        display: true,
+
+                        text: "Valor"
+
+                    },
+
+                    beginAtZero: false
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
 cargarResumen();
 cargarUsuarios();
 
 document.getElementById("guardar").addEventListener("click", crearRegistro);
+
