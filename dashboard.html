@@ -55,64 +55,91 @@
                 <button id="tabRegistros" class="tab">
                     Mis registros
                 </button>
+                <button id="tabAdmin" style="display: none;">
+                    Registros
+                </button>
+                
+                </div>
+                <div id="panelAdmin" style="display: none;">
 
-            </div>
-
-            <!-- TABLA USUARIOS -->
-            <div id="panelUsuarios">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Total registros</th>
-                            <th>Veces cargados</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="tablaUsuarios">
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-            <!-- TABLA REGISTROS -->
-            <div id="panelRegistros" style="display:none;">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>Fecha</th>
-                            <th>Cantidad Registros</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="tablaRegistros">
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
+    <h2>Registros de usuario</h2>
+    
+    <input type="email" id="emailAdmin" placeholder="Correo electrónico">
+    
+    <button id="buscarAdmin">
+        Buscar
+    </button>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Valor</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+    
+        <tbody id="tablaAdmin">
+        </tbody>
+    </table>
+    
+    </div>
+    
+    <!-- TABLA USUARIOS -->
+    <div id="panelUsuarios">
+    
+        <table>
+    
+            <thead>
+    
+                <tr>
+    
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Total registros</th>
+                    <th>Veces cargados</th>
+    
+                </tr>
+    
+            </thead>
+    
+            <tbody id="tablaUsuarios">
+    
+            </tbody>
+    
+        </table>
+    
+    </div>
+    
+    <!-- TABLA REGISTROS -->
+    <div id="panelRegistros" style="display:none;">
+    
+        <table>
+    
+            <thead>
+    
+                <tr>
+    
+                    <th>Fecha</th>
+                    <th>Cantidad Registros</th>
+    
+                </tr>
+    
+            </thead>
+    
+            <tbody id="tablaRegistros">
+    
+            </tbody>
+    
+        </table>
+    
+    </div>
+    
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    
     <script src="dashboard.js"></script>
-</body>
-
-</html>
+    </body>
+    
+    </html>
