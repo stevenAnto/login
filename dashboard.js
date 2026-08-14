@@ -167,9 +167,9 @@ async function crearRegistro() {
         document.getElementById("valor").value
     );
 
-    if (isNaN(value)) {
+    if (isNaN(value) || value < 0) {
 
-        alert("Ingrese un valor válido");
+        alert("Ingrese un valor válido mayor o igual a 0");
 
         return;
     }
@@ -572,6 +572,7 @@ async function modificarValor(recordId) {
 
 cargarResumen();
 cargarUsuarios();
+cargarRegistros();
 
 document.getElementById("guardar").addEventListener("click", crearRegistro);
 document.getElementById("buscarAdmin").addEventListener("click", buscarRegistrosAdmin);
