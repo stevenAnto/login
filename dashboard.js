@@ -574,4 +574,5 @@ cargarResumen();
 cargarUsuarios();
 
 document.getElementById("guardar").addEventListener("click", crearRegistro);
+document.getElementById("buscarAdmin").addEventListener("click", buscarRegistrosAdmin);
 
