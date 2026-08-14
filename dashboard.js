@@ -3,6 +3,12 @@ let grafico = null;
 const API = "https://registros.esclavos.cc";
 const token = localStorage.getItem("token");
 const user = JSON.parse(localStorage.getItem("user"));
+const ADMIN_EMAIL = "ecalcinap@unsa.edu.pe";
+
+if (user.email === ADMIN_EMAIL) {
+    tabAdmin.style.display = "inline-block";
+}
+
 
 if (!token || !user || tokenExpirado(token)) {
 
@@ -25,14 +31,18 @@ document.getElementById("logout").addEventListener("click", () => {
 
 const tabUsuarios = document.getElementById("tabUsuarios");
 const tabRegistros = document.getElementById("tabRegistros");
+const tabAdmin = document.getElementById("tabAdmin");
+
 
 const panelUsuarios = document.getElementById("panelUsuarios");
 const panelRegistros = document.getElementById("panelRegistros");
+const panelAdmin = document.getElementById("panelAdmin");
 
 tabUsuarios.addEventListener("click", () => {
 
     panelUsuarios.style.display = "block";
     panelRegistros.style.display = "none";
+    panelAdmin.style.display = "none";
 
 });
 
@@ -40,8 +50,16 @@ tabRegistros.addEventListener("click", () => {
 
     panelUsuarios.style.display = "none";
     panelRegistros.style.display = "block";
+    panelAdmin.style.display = "none";
 
     cargarRegistros();
+
+});
+tabAdmin.addEventListener("click", () => {
+
+    panelUsuarios.style.display = "none";
+    panelRegistros.style.display = "none";
+    panelAdmin.style.display = "block";
 
 });
 
@@ -423,6 +441,132 @@ function dibujarGrafico(labels, valores) {
 
     });
 
+}
+
+async function buscarRegistrosAdmin() {
+
+    const email = document
+        .getElementById("emailAdmin")
+        .value
+        .trim();
+
+    if (!email) {
+        alert("Ingrese un correo electrónico");
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `${API}/records/history?email=${encodeURIComponent(email)}`
+        );
+
+        const data = await response.json();
+
+        console.log("Registros admin:", data);
+
+        if (!response.ok) {
+            alert(data.detail || "Usuario no encontrado");
+            return;
+        }
+
+        mostrarRegistrosAdmin(data.records);
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Error al obtener los registros");
+
+    }
+}
+
+function mostrarRegistrosAdmin(records) {
+
+    const tbody = document.getElementById("tablaAdmin");
+
+    tbody.innerHTML = "";
+
+    records.forEach(registro => {
+
+        tbody.innerHTML += `
+            <tr>
+
+                <td>
+                    ${formatearFecha(registro.created_at)}
+                </td>
+
+                <td>
+                    <input
+                        type="number"
+                        id="valor-${registro._id}"
+                        value="${registro.value}"
+                        style="width: 80px;"
+                    >
+                </td>
+
+                <td>
+                    <button
+                        onclick="modificarValor('${registro._id}')"
+                    >
+                        Guardar
+                    </button>
+                </td>
+
+            </tr>
+        `;
+
+    });
+
+}
+async function modificarValor(recordId) {
+
+    const input = document.getElementById(
+        `valor-${recordId}`
+    );
+
+    const value = Number(input.value);
+
+    if (isNaN(value)) {
+        alert("Ingrese un valor válido");
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `${API}/records/${recordId}/value`,
+            {
+                method: "PATCH",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    value: value
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        console.log("PATCH:", data);
+
+        if (!response.ok) {
+            alert(data.detail || "Error al modificar");
+            return;
+        }
+
+        alert("Valor actualizado correctamente");
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Error al modificar el registro");
+
+    }
 }
 
 cargarResumen();
