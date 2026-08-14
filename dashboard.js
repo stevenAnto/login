@@ -1,4 +1,5 @@
 //const API = "https://backesclavos-production.up.railway.app";
+const tabAdmin = document.getElementById("tabAdmin");
 let grafico = null;
 const API = "https://registros.esclavos.cc";
 const token = localStorage.getItem("token");
@@ -31,7 +32,7 @@ document.getElementById("logout").addEventListener("click", () => {
 
 const tabUsuarios = document.getElementById("tabUsuarios");
 const tabRegistros = document.getElementById("tabRegistros");
-const tabAdmin = document.getElementById("tabAdmin");
+
 
 
 const panelUsuarios = document.getElementById("panelUsuarios");
